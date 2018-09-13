@@ -1,8 +1,6 @@
 {
   "name": "todoApp",
   "version": "1.0.0",
-  "dependencies": {
-  },
   "scripts": {
     "install": "npm run install:server",
     "install:client": "(cd ./client && npm install)",
