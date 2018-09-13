@@ -59,3 +59,11 @@ typings/
 
 # next.js build output
 .next
+.idea/
+client/www/
+client/plugins/
+client/platforms/
+client/resources/ios/icon/
+client/resources/ios/splash/
+client/resources/android/icon/
+client/resources/android/splash/
