@@ -7,12 +7,12 @@ export class ConfigService implements TypeOrmOptionsFactory {
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
       type: 'mongodb',
-      // host: 'localhost',
+      host: 'localhost',
       // host: 'cluster0-p2rto.mongodb.net',
-      host: 'mycluster0-shard-00-00.mongodb.net',
+      // host: 'mycluster0-shard-00-00.mongodb.net',
       port: 27017,
-      // username: 'admin', password: '', database: 'tododb',
-      username: 'user001', password: '123567Tam', database: 'test',
+      username: 'admin', password: '', database: 'tododb',
+      // username: 'user001', password: '123567Tam', database: 'test',
       // entities: [],
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
