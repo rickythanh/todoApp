@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators'
+import {ApiModel} from "./api.model";
 
 
 @Injectable()
@@ -17,7 +18,12 @@ export class ApiService {
   }
 
   base: string = 'http://127.0.0.1:3000';
-  // base: string = 'https://api-todo-demo.herokuapp.com';
+  // base: string = 'https://api-todo-demo1.herokuapp.com';
+
+  call(api: ApiModel) {
+    if(api.method === 'get') this.get(api.endpoint, api.params);
+    if(api.method === 'post') this.post(api.endpoint, api.params);
+  }
 
   get(endpoint: string, params?: any, reqOpts?: any) {
     if (!reqOpts) {

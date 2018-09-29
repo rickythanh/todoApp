@@ -1,27 +1,25 @@
-
-import {Component, ElementRef, Renderer2} from '@angular/core';
+import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {TodoService} from "../../todo/todo.service";
-import {TodoModel} from "../../todo/todo.model";
-import {TodoCreatePage} from "../../todo/todo-create/todo-create";
+import {TodoService} from "../todo.service";
+import {TodoModel} from "../todo.model";
+import {TodoCreatePage} from "../todo-create/todo-create";
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-todo-list',
+  templateUrl: 'todo-list.html'
 })
-export class HomePage {
+export class TodoListPage {
   items: Array<TodoModel> = [];
   completed: any = null;
   type: Array<any>;
   filter_value: string;
+  deleteEnable: boolean = false;
 
   constructor(
     public navCtrl: NavController,
-    private service: TodoService,
-    private re: Renderer2,
-    private el: ElementRef
+    private service: TodoService
   ) {
-    this.type  = ['all', 'done', 'task'];
+    this.type = ['all', 'done', 'task'];
     this.filter_value = this.type[0];
   }
 
@@ -42,12 +40,6 @@ export class HomePage {
   }
 
   add() {
-    // this.service.add('new 01').subscribe(res => {
-    //   console.log(res);
-    //   this.doRefresh();
-    // }, err => {
-    //   console.log(err);
-    // });
     this.navCtrl.push(TodoCreatePage);
   }
 
@@ -61,32 +53,27 @@ export class HomePage {
       console.log(err);
       item.completed = !item.completed;
     });
-
-
-    console.log(item.completed);
   }
 
-  doRefresh(event?:any) {
+  doRefresh(event?: any) {
     console.log('doRefresh');
 
-    this.service.getall(1).subscribe(res => {
+    this.service.getall().subscribe(res => {
       console.log(res);
       this.items = res;
-      if(event) event.complete();
+      if (event) event.complete();
     }, err => {
       console.log(err);
-      if(event) event.complete();
+      if (event) event.complete();
     })
   }
 
-  doSamething() {
-
+  delete() {
+    this.deleteEnable = !this.deleteEnable;
   }
 
   ionViewDidLoad() {
     this.doRefresh();
-
-    // this.re.setStyle(this.el.nativeElement, 'color', 'red');
   }
 
 }

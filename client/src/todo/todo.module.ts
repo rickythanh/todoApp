@@ -2,26 +2,26 @@ import {IonicModule} from 'ionic-angular';
 import {NgModule} from '@angular/core';
 import {TodoService} from "./todo.service";
 import {TodoCreatePage} from "./todo-create/todo-create";
+import {TodoListPage} from "./todo-list/todo-list";
+import {PipesModule} from "../pipes/pipes.module";
 
-
-export const components = [
-  TodoCreatePage
-];
 
 @NgModule({
   declarations: [
-    components
+    TodoCreatePage,
+    TodoListPage
   ],
   imports: [
-    IonicModule
+    IonicModule,
+    PipesModule
   ],
   entryComponents: [
-    components
+    TodoCreatePage,
+    TodoListPage
   ],
   providers: [
     TodoService
   ]
 })
-
 export class TodoModule {
 }

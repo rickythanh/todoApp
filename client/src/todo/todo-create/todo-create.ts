@@ -1,14 +1,7 @@
 import {Component} from '@angular/core';
 import {AlertController, NavController, NavParams} from 'ionic-angular';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TodoService} from "../todo.service";
-
-/**
- * Generated class for the TodoCreatePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-todo-create',
@@ -46,7 +39,7 @@ export class TodoCreatePage {
     this.service.add(this.form.get('title').value).subscribe(res =>{
       alertPopup.present();
     }, err => {
-
+      console.log(err);
     });
   }
 

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button icon-only color="royal" (click)="add()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      Todo
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="delete()">
+        <ion-icon name="ios-trash-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-segment [(ngModel)]="filter_value" color="primary" (ionChange)="onSelected($event._value)" padding>
+    <ion-segment-button value="{{ type[0] }}">All</ion-segment-button>
+    <ion-segment-button value="{{ type[1] }}">Done</ion-segment-button>
+    <ion-segment-button value="{{ type[2] }}">Todo</ion-segment-button>
+  </ion-segment>
+
+  <ion-list>
+    <ion-item *ngFor="let item of items | filterPipe: ['completed', completed]; let idx=index">
+      <ion-icon name="ios-remove-circle" color="danger" item-start *ngIf="deleteEnable"></ion-icon>
+      <ion-label [ngStyle]="{'text-decoration': item.completed?'line-through':''}">
+        {{ item.title }}
+      </ion-label>
+      <ion-toggle [checked]="item.completed" (ionChange)="doneTask(idx)" item-right></ion-toggle>
+    </ion-item>
+  </ion-list>
+</ion-content>
+

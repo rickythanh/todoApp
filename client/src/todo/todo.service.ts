@@ -12,15 +12,8 @@ export class TodoService {
   ) {
   }
 
-  getall(page: number): Observable<any> {
-    page = 10;
-    let vm = this;
-    return vm.api.get('/todo/getall', {page: page});
-    // return Observable.create((observer) => {
-    //   vm.api.get('/todo/getall').subscribe((res)=>{}, (err)=>{});
-    //   observer.next('');
-    //   observer.complete();
-    // });
+  getall(): Observable<any> {
+    return this.api.get('/todo/getall', {});
   }
 
   remove() {
@@ -28,12 +21,7 @@ export class TodoService {
 
   add(title: string) {
     let todo = {
-      // _id: null,
-      // completed: null,
       title: title
-      // create_date: null,
-      // update_date: null,
-      // user_id: '5ab25d50740ce24b63cc9c83'
     };
     return this.api.post('/todo/create', todo);
   }
